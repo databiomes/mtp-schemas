@@ -20,7 +20,7 @@ ContextLine = Annotated[str, Field(max_length=MAXIMUM_CHARACTERS_PER_MODEL_CONTE
 InstructionContextLine = Annotated[str, Field(max_length=MAXIMUM_CHARACTERS_PER_INSTRUCTION_CONTEXT_LINE)]
 SnippetStr = Annotated[str, Field(max_length=MAXIMUM_CHARACTERS_PER_SNIPPET)]
 
-# Token type values emitted by Token.__class__.__name__ (must match TokenTypeEnum keys).
+# Token type values emitted by Token.__class__.__name__
 TokenTypeLiteral = Literal[
     "Token",
     "SpecialToken",
