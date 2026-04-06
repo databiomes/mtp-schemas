@@ -4,7 +4,7 @@ Pydantic models for Template JSON structure.
 
 from typing import Dict, List, Literal
 
-from structures import BaseModel
+from pydantic import BaseModel
 
 
 class Tokens(BaseModel):

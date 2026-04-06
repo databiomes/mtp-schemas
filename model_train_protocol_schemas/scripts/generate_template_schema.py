@@ -3,8 +3,8 @@ This script updates the JSON schema files used for validating model training con
 """
 from typing import Optional
 
-from structures.template import Template
-from utils import get_template_version, get_template_schema_url, _save_schema
+from model_train_protocol_schemas.structures.template import Template
+from model_train_protocol_schemas.utils import get_template_version, get_template_schema_url, _save_schema
 
 
 def generate_template_schema(base_path: Optional[str] = None) -> str:

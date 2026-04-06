@@ -6,7 +6,7 @@ from typing import Annotated, List, Dict, Any, Optional, Union, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from constants import (
+from model_train_protocol_schemas.constants import (
     MAXIMUM_CHARACTERS_PER_INSTRUCTION_CONTEXT_LINE,
     MAXIMUM_CHARACTERS_PER_MODEL_CONTEXT_LINE,
     MAXIMUM_CHARACTERS_PER_SNIPPET,

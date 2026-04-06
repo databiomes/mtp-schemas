@@ -2,8 +2,8 @@ import json
 from pathlib import Path
 from typing import Optional
 
-from schema_version import SCHEMA_VERSION
-from template_version import TEMPLATE_VERSION
+from model_train_protocol_schemas.schema_version import SCHEMA_VERSION
+from model_train_protocol_schemas.template_version import TEMPLATE_VERSION
 
 
 def get_schema_version() -> str:

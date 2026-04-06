@@ -1,7 +1,7 @@
 from typing import Optional
 
-from structures.protocol import Protocol
-from utils import get_schema_version, get_bloom_schema_url, _save_schema
+from model_train_protocol_schemas.structures.protocol import Protocol
+from model_train_protocol_schemas.utils import get_schema_version, get_bloom_schema_url, _save_schema
 
 
 def generate_protocol_schema(base_path: Optional[str] = None) -> str:
