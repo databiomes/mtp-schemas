@@ -3,7 +3,7 @@ name = "mtp-schemas"
 version = "1.0.0"
 description = "Contains schemas supporting the model-train-protocol (mtp) library"
 authors = [
-    {name = "nikita-olechko",email = "nikita.olechko@gmail.com"}
+    {name = "nikita-olechko",email = "nikita@databiomes.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.14"
