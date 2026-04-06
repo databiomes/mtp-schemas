@@ -1,5 +1,5 @@
 [project]
-name = "mtp-schemas"
+name = "model-train-protocol-schemas"
 version = "1.0.0"
 description = "Contains schemas supporting the model-train-protocol (mtp) library"
 authors = [
