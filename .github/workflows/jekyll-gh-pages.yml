@@ -33,7 +33,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc
-          pandoc README.md -o index.html --metadata title="Model Train Protocol Schemas"
+          pandoc readme.md -o index.html --metadata title="Model Train Protocol Schemas"
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
