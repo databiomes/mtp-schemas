@@ -1,6 +1,6 @@
 [project]
 name = "model-train-protocol-schemas"
-version = "1.0.0"
+version = "1.1.0"
 description = "Contains schemas supporting the model-train-protocol (mtp) library"
 authors = [
     {name = "nikita-olechko",email = "nikita@databiomes.com"}
@@ -8,7 +8,8 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "pydantic (>=2.12.5,<3.0.0)"
+    "pydantic (>=2.12.5,<3.0.0)",
+    "packaging>=23.0"
 ]
 
 [tool.poetry]
