@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 from typing import Optional
 
+from packaging.version import Version
+
 from model_train_protocol_schemas.schema_version import SCHEMA_VERSION
 from model_train_protocol_schemas.template_version import TEMPLATE_VERSION
 
@@ -18,6 +20,24 @@ def get_template_version() -> str:
     Gets the template version bundled with the package.
     """
     return TEMPLATE_VERSION
+
+
+def parse_bloom_file_version(bloom_file: dict) -> Version:
+    """Parse the version from a Bloom file."""
+    if "$id" not in bloom_file:
+        raise ValueError("Bloom file is missing '$id' field.")
+    schema_url: str = bloom_file["$id"]
+    version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
+    return Version(version_str)
+
+
+def parse_template_file_version(bloom_file: dict) -> Version:
+    """Parse the version from a Bloom file."""
+    if "$id" not in bloom_file:
+        raise ValueError("Template file is missing '$id' field.")
+    schema_url: str = bloom_file["$id"]
+    version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
+    return Version(version_str)
 
 
 def get_bloom_schema_url():
