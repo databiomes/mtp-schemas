@@ -40,6 +40,36 @@ def parse_template_file_version(bloom_file: dict) -> Version:
     return Version(version_str)
 
 
+def get_example_bloom_file(version: Version) -> dict:
+    """
+    Retrieves an example Bloom file for the specified version.
+    """
+    major: str = str(version.major)
+    minor: str = str(version.minor)
+    patch: str = str(version.micro)
+    example_path = Path(__file__).resolve().parents[1] / "examples" / f"bloom_{major}_{minor}_{patch}.json"
+    if not example_path.exists:
+        raise FileNotFoundError(f"Example Bloom file not found for version {version} at path: {example_path}")
+    with open(example_path, 'r', encoding='utf-8') as f:
+        bloom_file = json.load(f)
+    return bloom_file
+
+
+def get_example_template_file(version: Version) -> dict:
+    """
+    Retrieves an example Template file for the specified version.
+    """
+    major: str = str(version.major)
+    minor: str = str(version.minor)
+    patch: str = str(version.micro)
+    example_path = Path(__file__).resolve().parents[1] / "examples" / f"template_{major}_{minor}_{patch}.json"
+    if not example_path.exists:
+        raise FileNotFoundError(f"Example Template file not found for version {version} at path: {example_path}")
+    with open(example_path, 'r', encoding='utf-8') as f:
+        template_file = json.load(f)
+    return template_file
+
+
 def get_bloom_schema_url():
     """
     Retrieves the schema URL for the current version of the Model Train Protocol.
