@@ -48,7 +48,7 @@ def get_example_bloom_file(version: Version) -> dict:
     minor: str = str(version.minor)
     patch: str = str(version.micro)
     example_path = Path(__file__).resolve().parent / "examples" / f"bloom_{major}_{minor}_{patch}.json"
-    if not example_path.exists:
+    if not example_path.exists():
         raise FileNotFoundError(f"Example Bloom file not found for version {version} at path: {example_path}")
     with open(example_path, 'r', encoding='utf-8') as f:
         bloom_file = json.load(f)
@@ -63,7 +63,7 @@ def get_example_template_file(version: Version) -> dict:
     minor: str = str(version.minor)
     patch: str = str(version.micro)
     example_path = Path(__file__).resolve().parent / "examples" / f"template_{major}_{minor}_{patch}.json"
-    if not example_path.exists:
+    if not example_path.exists():
         raise FileNotFoundError(f"Example Template file not found for version {version} at path: {example_path}")
     with open(example_path, 'r', encoding='utf-8') as f:
         template_file = json.load(f)
