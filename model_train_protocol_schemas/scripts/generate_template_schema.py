@@ -1,13 +1,14 @@
 """
 This script updates the JSON schema files used for validating model training configurations.
 """
+from pathlib import Path
 from typing import Optional
 
 from model_train_protocol_schemas.structures.template import Template
 from model_train_protocol_schemas.utils import get_template_version, get_template_schema_url, _save_schema
 
 
-def generate_template_schema(base_path: Optional[str] = None) -> str:
+def generate_template_schema(base_path: Optional[str | Path] = None) -> str:
     """
     Generates and saves the JSON Schema for the Model Train Protocol Template to
     schemas/v{major}/template_{version}.json.
@@ -36,5 +37,6 @@ def generate_template_schema(base_path: Optional[str] = None) -> str:
 
 if __name__ == "__main__":
     print("Generating template schema...")
-    template_path = generate_template_schema()
+    repo_root = Path(__file__).resolve().parents[1]
+    template_path = generate_template_schema(base_path=repo_root)
     print(f"Template schema saved to: {template_path}")
