@@ -1,1 +1,1 @@
-SCHEMA_VERSION: str = "1.2.1"
+SCHEMA_VERSION: str = "1.3.0"
