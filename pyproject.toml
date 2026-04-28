@@ -1,6 +1,6 @@
 [project]
 name = "model-train-protocol-schemas"
-version = "2.0.0"
+version = "2.0.1"
 description = "Contains schemas supporting the model-train-protocol (mtp) library"
 authors = [
     {name = "nikita-olechko",email = "nikita@databiomes.com"}
