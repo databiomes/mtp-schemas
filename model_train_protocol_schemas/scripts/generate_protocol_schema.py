@@ -1,10 +1,11 @@
+from pathlib import Path
 from typing import Optional
 
 from model_train_protocol_schemas.structures.protocol import Protocol
 from model_train_protocol_schemas.utils import get_schema_version, get_bloom_schema_url, _save_schema
 
 
-def generate_protocol_schema(base_path: Optional[str] = None) -> str:
+def generate_protocol_schema(base_path: Optional[str | Path] = None) -> str:
     """
     Generates and saves the JSON Schema for the Model Train Protocol to
     schemas/v{major}/bloom_{version}.json.
@@ -33,5 +34,6 @@ def generate_protocol_schema(base_path: Optional[str] = None) -> str:
 
 if __name__ == "__main__":
     print("Generating protocol schema...")
-    protocol_path = generate_protocol_schema()
+    repo_root = Path(__file__).resolve().parents[1]
+    protocol_path = generate_protocol_schema(base_path=repo_root)
     print(f"Protocol schema saved to: {protocol_path}")

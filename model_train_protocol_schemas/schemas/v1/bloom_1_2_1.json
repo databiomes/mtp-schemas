@@ -1,54 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mtp.schemas.databiomes.com/v1/bloom_1_0_0.json",
+  "$id": "https://mtp.schemas.databiomes.com/v1/bloom_1_2_1.json",
   "title": "Protocol",
   "description": "Main model for MTP Protocol JSON structure.",
   "$defs": {
-    "Batch": {
-      "description": "Model for batches configuration.",
-      "properties": {
-        "pretrain": {
-          "items": {
-            "additionalProperties": true,
-            "type": "object"
-          },
-          "title": "Pretrain",
-          "type": "array"
-        },
-        "instruct": {
-          "items": {
-            "additionalProperties": true,
-            "type": "object"
-          },
-          "title": "Instruct",
-          "type": "array"
-        },
-        "judge": {
-          "items": {
-            "additionalProperties": true,
-            "type": "object"
-          },
-          "title": "Judge",
-          "type": "array"
-        },
-        "ppo": {
-          "items": {
-            "additionalProperties": true,
-            "type": "object"
-          },
-          "title": "Ppo",
-          "type": "array"
-        }
-      },
-      "required": [
-        "pretrain",
-        "instruct",
-        "judge",
-        "ppo"
-      ],
-      "title": "Batch",
-      "type": "object"
-    },
     "Guardrail": {
       "description": "Model for guardrails configuration.",
       "properties": {
@@ -119,6 +74,12 @@
     "InstructionSet": {
       "description": "Model for instruction sets.",
       "properties": {
+        "name": {
+          "description": "Name of the instruction set.",
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
         "guardrails": {
           "items": {
             "$ref": "#/$defs/Guardrail"
@@ -167,20 +128,11 @@
         }
       },
       "required": [
+        "name",
         "set",
         "samples"
       ],
       "title": "InstructionSet",
-      "type": "object"
-    },
-    "Number": {
-      "additionalProperties": {
-        "description": "Number rule value (must be a string)",
-        "type": "string"
-      },
-      "description": "Model for numbers configuration.",
-      "properties": {},
-      "title": "Number",
       "type": "object"
     },
     "Sample": {
@@ -432,6 +384,10 @@
       "title": "Inputs",
       "type": "integer"
     },
+    "state_machine": {
+      "title": "State Machine",
+      "type": "boolean"
+    },
     "encrypted": {
       "title": "Encrypted",
       "type": "boolean"
@@ -465,23 +421,16 @@
     },
     "instruction": {
       "$ref": "#/$defs/Instruction"
-    },
-    "numbers": {
-      "$ref": "#/$defs/Number"
-    },
-    "batches": {
-      "$ref": "#/$defs/Batch"
     }
   },
   "required": [
     "name",
     "inputs",
+    "state_machine",
     "encrypted",
     "valid",
     "tokens",
-    "instruction",
-    "numbers",
-    "batches"
+    "instruction"
   ],
   "type": "object"
 }
