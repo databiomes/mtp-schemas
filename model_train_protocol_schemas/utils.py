@@ -6,6 +6,7 @@ from packaging.version import Version
 
 from model_train_protocol_schemas.schema_version import SCHEMA_VERSION
 from model_train_protocol_schemas.template_version import TEMPLATE_VERSION
+from model_train_protocol_schemas.model_version import MODEL_VERSION
 
 
 def get_schema_version() -> str:
@@ -20,6 +21,13 @@ def get_template_version() -> str:
     Gets the template version bundled with the package.
     """
     return TEMPLATE_VERSION
+
+
+def get_model_version() -> str:
+    """
+    Gets the model version bundled with the package.
+    """
+    return MODEL_VERSION
 
 
 def parse_bloom_file_version(bloom_file: dict) -> Version:
@@ -70,6 +78,21 @@ def get_example_template_file(version: Version) -> dict:
     return template_file
 
 
+def get_example_model_file(version: Version) -> dict:
+    """
+    Retrieves an example Model file for the specified version.
+    """
+    major: str = str(version.major)
+    minor: str = str(version.minor)
+    patch: str = str(version.micro)
+    example_path = Path(__file__).resolve().parent / "examples" / f"model_{major}_{minor}_{patch}.json"
+    if not example_path.exists():
+        raise FileNotFoundError(f"Example Model file not found for version {version} at path: {example_path}")
+    with open(example_path, 'r', encoding='utf-8') as f:
+        model_file = json.load(f)
+    return model_file
+
+
 def get_bloom_schema_url():
     """
     Retrieves the schema URL for the current version of the Model Train Protocol.
@@ -85,6 +108,15 @@ def get_template_schema_url():
     """
     version_semantic: str = get_template_version()
     schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/template_{version_semantic.replace('.', '_')}.json"
+    return schema_url
+
+
+def get_model_schema_url():
+    """
+    Retrieves the schema URL for the current version of the MTP Model.
+    """
+    version_semantic: str = get_model_version()
+    schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/model_{version_semantic.replace('.', '_')}.json"
     return schema_url
 
 

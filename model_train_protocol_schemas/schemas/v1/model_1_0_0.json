@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mtp.schemas.databiomes.com/v1/model_1_0_0.json",
+  "title": "Model",
+  "description": "Manifest representing a trained model, its identifying information, and associated artifacts.",
+  "$defs": {
+    "ModelFile": {
+      "description": "Represents a file associated with the model.",
+      "properties": {
+        "path": {
+          "description": "Path relative to the model's root directory.",
+          "title": "Path",
+          "type": "string"
+        },
+        "checksum": {
+          "description": "Checksum to verify integrity (e.g., sha256:...).",
+          "title": "Checksum",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "checksum"
+      ],
+      "title": "ModelFile",
+      "type": "object"
+    },
+    "TrainingInfo": {
+      "description": "Reference to training related artifacts.",
+      "properties": {
+        "reference": {
+          "description": "Reference to training artifacts (e.g., Bloom ID).",
+          "title": "Reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reference"
+      ],
+      "title": "TrainingInfo",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "id": {
+      "description": "Globally unique identifier for the model.",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the model.",
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Detailed description of the model, its purpose, and capabilities.",
+      "title": "Description"
+    },
+    "created_time": {
+      "description": "The date and time when the model was created (ISO 8601 format).",
+      "format": "date-time",
+      "title": "Created Time",
+      "type": "string"
+    },
+    "files": {
+      "description": "List of files associated with the model, including paths and checksums for integrity verification.",
+      "items": {
+        "$ref": "#/$defs/ModelFile"
+      },
+      "minItems": 1,
+      "title": "Files",
+      "type": "array"
+    },
+    "training": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TrainingInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "References to training-related artifacts, such as the training dataset or process."
+    },
+    "labels": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "User-defined key-value pairs for organizing and categorizing the model.",
+      "title": "Labels"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "created_time",
+    "files"
+  ],
+  "type": "object"
+}
