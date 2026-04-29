@@ -30,23 +30,30 @@ def get_model_version() -> str:
     return MODEL_VERSION
 
 
-def parse_bloom_file_version(bloom_file: dict) -> Version:
+def parse_bloom_version(d: dict) -> Version:
     """Parse the version from a Bloom file."""
-    if "$id" not in bloom_file:
+    if "$id" not in d:
         raise ValueError("Bloom file is missing '$id' field.")
-    schema_url: str = bloom_file["$id"]
+    schema_url: str = d["$id"]
     version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
     return Version(version_str)
 
 
-def parse_template_file_version(bloom_file: dict) -> Version:
+def parse_template_version(d: dict) -> Version:
     """Parse the version from a Bloom file."""
-    if "$id" not in bloom_file:
+    if "$id" not in d:
         raise ValueError("Template file is missing '$id' field.")
-    schema_url: str = bloom_file["$id"]
+    schema_url: str = d["$id"]
     version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
     return Version(version_str)
 
+def parse_model_version(d: dict) -> Version:
+    """Parse the version from a Bloom file."""
+    if "$id" not in d:
+        raise ValueError("Model file is missing '$id' field.")
+    schema_url: str = d["$id"]
+    version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
+    return Version(version_str)
 
 def get_example_bloom_file(version: Version) -> dict:
     """
