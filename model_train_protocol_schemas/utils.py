@@ -4,16 +4,16 @@ from typing import Optional
 
 from packaging.version import Version
 
-from model_train_protocol_schemas.schema_version import SCHEMA_VERSION
+from model_train_protocol_schemas.bloom_version import BLOOM_VERSION
 from model_train_protocol_schemas.template_version import TEMPLATE_VERSION
 from model_train_protocol_schemas.model_version import MODEL_VERSION
 
 
-def get_schema_version() -> str:
+def get_bloom_version() -> str:
     """
-    Gets the schema version bundled with the package.
+    Gets the bloom version bundled with the package.
     """
-    return SCHEMA_VERSION
+    return BLOOM_VERSION
 
 
 def get_template_version() -> str:
@@ -97,7 +97,7 @@ def get_bloom_schema_url():
     """
     Retrieves the schema URL for the current version of the Model Train Protocol.
     """
-    version_semantic: str = get_schema_version()
+    version_semantic: str = get_bloom_version()
     schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/bloom_{version_semantic.replace('.', '_')}.json"
     return schema_url
 

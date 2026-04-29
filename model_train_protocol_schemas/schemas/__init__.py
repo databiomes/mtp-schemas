@@ -5,8 +5,9 @@ from importlib.resources.abc import Traversable
 import json
 from typing import Any
 
-SCHEMA_PROTOCOL: str = "bloom_schema.json"
+SCHEMA_BLOOM: str = "bloom_schema.json"
 SCHEMA_TEMPLATE: str = "template_schema.json"
+SCHEMA_MODEL: str = "model_schema.json"
 
 
 def list_schema_versions() -> list[str]:
