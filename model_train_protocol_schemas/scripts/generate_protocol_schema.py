@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Optional
 
 from model_train_protocol_schemas.structures.protocol import Protocol
-from model_train_protocol_schemas.utils import get_schema_version, get_bloom_schema_url, _save_schema
+from model_train_protocol_schemas.utils import get_bloom_version, get_bloom_schema_url, _save_schema
 
 
 def generate_protocol_schema(base_path: Optional[str | Path] = None) -> str:
@@ -23,7 +23,7 @@ def generate_protocol_schema(base_path: Optional[str | Path] = None) -> str:
 
     return _save_schema(
         schema=schema,
-        version=get_schema_version(),
+        version=get_bloom_version(),
         schema_url=get_bloom_schema_url(),
         title="Model Train Protocol Schema",
         description="JSON Schema for Model Train Protocol (MTP) model files",
