@@ -1,6 +1,6 @@
 [project]
 name = "model-train-protocol-schemas"
-version = "3.0.0"
+version = "3.0.1"
 description = "Contains schemas supporting the model-train-protocol (mtp) library"
 readme = { file = "README.md", content-type = "text/markdown" }
 authors = [
