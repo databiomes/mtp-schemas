@@ -75,10 +75,18 @@
       "description": "Model for instruction sets.",
       "properties": {
         "name": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
           "description": "Name of the instruction set.",
-          "minLength": 1,
-          "title": "Name",
-          "type": "string"
+          "title": "Name"
         },
         "guardrails": {
           "items": {
@@ -128,7 +136,6 @@
         }
       },
       "required": [
-        "name",
         "set",
         "samples"
       ],
