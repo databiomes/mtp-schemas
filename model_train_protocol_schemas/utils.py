@@ -47,6 +47,7 @@ def parse_template_version(d: dict) -> Version:
     version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
     return Version(version_str)
 
+
 def parse_model_version(d: dict) -> Version:
     """Parse the version from a Bloom file."""
     if "$id" not in d:
@@ -54,6 +55,7 @@ def parse_model_version(d: dict) -> Version:
     schema_url: str = d["$id"]
     version_str: str = ".".join(schema_url.split("/")[-1].split(".")[0].split("_")[:-3])  # like 1.2.0
     return Version(version_str)
+
 
 def get_example_bloom_file(version: Version) -> dict:
     """
@@ -100,29 +102,38 @@ def get_example_model_file(version: Version) -> dict:
     return model_file
 
 
-def get_bloom_schema_url():
+def get_bloom_schema_url(version: Version = None):
     """
     Retrieves the schema URL for the current version of the Model Train Protocol.
     """
-    version_semantic: str = get_bloom_version()
+    if version is None:
+        version_semantic: str = get_bloom_version()
+    else:
+        version_semantic: str = str(version)
     schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/bloom_{version_semantic.replace('.', '_')}.json"
     return schema_url
 
 
-def get_template_schema_url():
+def get_template_schema_url(version: Version = None):
     """
     Retrieves the schema URL for the current version of the MTP Template.
     """
-    version_semantic: str = get_template_version()
+    if version is None:
+        version_semantic: str = get_template_version()
+    else:
+        version_semantic: str = str(version)
     schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/template_{version_semantic.replace('.', '_')}.json"
     return schema_url
 
 
-def get_model_schema_url():
+def get_model_schema_url(version: Version = None):
     """
     Retrieves the schema URL for the current version of the MTP Model.
     """
-    version_semantic: str = get_model_version()
+    if version is None:
+        version_semantic: str = get_model_version()
+    else:
+        version_semantic: str = str(version)
     schema_url = f"https://mtp.schemas.databiomes.com/v{version_semantic[0]}/model_{version_semantic.replace('.', '_')}.json"
     return schema_url
 
