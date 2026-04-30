@@ -74,7 +74,11 @@ class Guardrail(BaseModel):
 
 class InstructionSet(BaseModel):
     """Model for instruction sets."""
-    name: str = Field(..., min_length=1, description="Name of the instruction set.")
+    name: Optional[str] = Field(
+        default=None,
+        min_length=1,
+        description="Name of the instruction set."
+    )
     guardrails: List[Guardrail] = Field(default_factory=list)
     context: List[InstructionContextLine] = Field(
         default_factory=list,
