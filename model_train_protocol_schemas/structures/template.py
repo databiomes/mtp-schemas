@@ -4,7 +4,7 @@ Pydantic models for Template JSON structure.
 
 from typing import Dict, List, Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Tokens(BaseModel):
@@ -38,8 +38,10 @@ class ExampleUsage(BaseModel):
 
 class Template(BaseModel):
     """Main model for MTP Template JSON structure."""
+    model_config = ConfigDict(protected_namespaces=())
+
     encrypt: bool
-    state_machine: bool
+    model_type: Literal["generative", "state_machine", "multi_classifier"]
     inputs: int
     tokens: Tokens
     instructions: Dict[str, InstructionDefinition]  # Instruction name -> instruction definition

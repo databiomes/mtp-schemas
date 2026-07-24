@@ -112,7 +112,7 @@ class Protocol(BaseModel):
     """Main model for MTP Protocol JSON structure."""
     name: str = Field(..., min_length=1)
     inputs: int = Field(...)
-    state_machine: bool
+    model_type: Literal["generative", "state_machine", "multi_classifier"]
     encrypted: bool
     valid: bool
     context: List[ContextLine] = Field(
@@ -123,4 +123,4 @@ class Protocol(BaseModel):
     special_tokens: List[str] = Field(default_factory=list)
     instruction: Instruction
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", protected_namespaces=())
