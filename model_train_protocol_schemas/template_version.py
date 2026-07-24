@@ -1,1 +1,1 @@
-TEMPLATE_VERSION: str = "1.3.0"
+TEMPLATE_VERSION: str = "2.0.0"
