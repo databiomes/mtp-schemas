@@ -1,1 +1,1 @@
-BLOOM_VERSION: str = "1.2.1"
+BLOOM_VERSION: str = "1.3.0"
