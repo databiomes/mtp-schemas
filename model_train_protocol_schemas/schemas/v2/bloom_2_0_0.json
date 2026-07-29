@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mtp.schemas.databiomes.com/v1/bloom_1_3_0.json",
+  "$id": "https://mtp.schemas.databiomes.com/v2/bloom_2_0_0.json",
   "title": "Protocol",
   "description": "Main model for MTP Protocol JSON structure.",
   "$defs": {
