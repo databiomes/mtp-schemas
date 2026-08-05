@@ -72,14 +72,19 @@ def get_example_bloom_file(version: Version) -> dict:
     return bloom_file
 
 
-def get_example_template_file(version: Version) -> dict:
+def get_example_template_file(version: Version, variant: Optional[str] = None) -> dict:
     """
     Retrieves an example Template file for the specified version.
+
+    :param version: The template version to retrieve an example for.
+    :param variant: Optional model type variant, e.g. "state_machine" or "multi_classifier". Each variant shows a
+        different shape of the `states` field. Defaults to the generative example.
     """
     major: str = str(version.major)
     minor: str = str(version.minor)
     patch: str = str(version.micro)
-    example_path = Path(__file__).resolve().parent / "examples" / f"template_{major}_{minor}_{patch}.json"
+    suffix: str = f"_{variant}" if variant else ""
+    example_path = Path(__file__).resolve().parent / "examples" / f"template_{major}_{minor}_{patch}{suffix}.json"
     if not example_path.exists():
         raise FileNotFoundError(f"Example Template file not found for version {version} at path: {example_path}")
     with open(example_path, 'r', encoding='utf-8') as f:
