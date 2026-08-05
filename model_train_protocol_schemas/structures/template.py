@@ -2,9 +2,16 @@
 Pydantic models for Template JSON structure.
 """
 
-from typing import Dict, List, Literal
+from typing import Dict, List, Literal, Union
 
 from pydantic import BaseModel, ConfigDict
+
+# The states a model may respond with.
+#
+# State machine models pick one state out of a flat list, so their states are a ``List[str]``. Multi classifier models
+# answer with one value per classification label, so their states are a ``Dict[str, List[str]]`` mapping each label to
+# the values that are acceptable for it. Models with no states at all (generative) use an empty list.
+States = Union[List[str], Dict[str, List[str]]]
 
 
 class Tokens(BaseModel):
@@ -45,5 +52,5 @@ class Template(BaseModel):
     inputs: int
     tokens: Tokens
     instructions: Dict[str, InstructionDefinition]  # Instruction name -> instruction definition
-    states: List[str]
+    states: States  # Flat list for state machines, label -> acceptable values for multi classifiers
     example_usage: ExampleUsage
